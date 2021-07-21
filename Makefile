@@ -28,10 +28,10 @@
 	bochs -f bochsrc.txt -q
 
     %.o: %.c
-        $(CC) $(CFLAGS)  $< -o $@
+	$(CC) $(CFLAGS)  $< -o $@
 
     %.o: %.s
-        $(AS) $(ASFLAGS) $< -o $@
+	$(AS) $(ASFLAGS) $< -o $@
 
     clean:
-        rm -rf *.o kernel.elf os.iso
+	rm -rf *.o kernel.elf os.iso
