@@ -8,5 +8,7 @@
            char ptr2[] = "Welcome to CarbonOS";
    
     
-    fb_write( ptr2, 19);
+    serial_write(0x3F8, ptr2, 19);
+    fb_write(ptr2, 19);
+    
     }
