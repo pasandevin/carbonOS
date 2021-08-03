@@ -3,3 +3,7 @@
     {
         return arg1 + arg2 + arg3;
     }
+    
+    int main(){
+    	return sum_of_three(1,2,4);
+    }
