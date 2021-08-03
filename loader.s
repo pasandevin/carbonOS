@@ -24,7 +24,7 @@
         
         
     ; The assembly code
-    extern sum_of_three   		   ; the main function is defined elsewhere
+    extern main   		           ; the main function is defined elsewhere
     call main                             ; call the function, the result will be in eax
     
     
