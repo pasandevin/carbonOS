@@ -1,6 +1,6 @@
     #include "drivers/frame_buffer.h"
     #include "drivers/serial_port.h"
-    #include "memory_segments.h"
+    #include "segmentation/memory_segments.h"
 
 
     
