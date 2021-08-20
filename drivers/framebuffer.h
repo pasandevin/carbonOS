@@ -1,5 +1,5 @@
-    #ifndef INCLUDE_FRAME_BUFFER_H
-    #define INCLUDE_FRAME_BUFFER_H
+    #ifndef INCLUDE_FRAMEBUFFER_H
+    #define INCLUDE_FRAMEBUFFER_H
     #include "io.h"
 
     /* The I/O ports */
@@ -13,7 +13,7 @@
     
     #define FB_GREEN     2
     #define FB_DARK_GREY 8
-    char *fb = (char *) 0x000B8000;
+  /*  char *fb = (char *) 0x000B8000;
      unsigned int writing_state = 800;
      unsigned int cursor_state=400;
     void fb_write_cell(unsigned int i, char c, unsigned char fg, unsigned char bg)
@@ -41,6 +41,13 @@
 		fb_move_cursor(cursor_state);
 	   	 return 0;
     }
+    */
+    
+     void fb_write_cell(unsigned int i, char c, unsigned char fg, unsigned char bg);
+    
+        void fb_move_cursor(unsigned short pos);
+    
+    int fb_write(char *buf, unsigned int len);
     
     #endif
     
