@@ -11,6 +11,7 @@
     
     serial_write(0x3F8, ptr2, 19);
     fb_write(ptr2, 19);
+
     segments_install_gdt();
     
     }
