@@ -1,19 +1,7 @@
-    #ifndef INCLUDE_FRAME_BUFFER_H
-    #define INCLUDE_FRAME_BUFFER_H
-    #include "io.h"
+#include "io.h"
+#include "framebuffer.h"
 
-    /* The I/O ports */
-    #define FB_COMMAND_PORT         0x3D4
-    #define FB_DATA_PORT            0x3D5
-
-    /* The I/O port commands */
-    #define FB_HIGH_BYTE_COMMAND    14
-    #define FB_LOW_BYTE_COMMAND     15
-
-    
-    #define FB_GREEN     2
-    #define FB_DARK_GREY 8
-    char *fb = (char *) 0x000B8000;
+     char *fb = (char *) 0x000B8000;
      unsigned int writing_state = 800;
      unsigned int cursor_state=400;
     void fb_write_cell(unsigned int i, char c, unsigned char fg, unsigned char bg)
@@ -33,7 +21,7 @@
     int fb_write(char *buf, unsigned int len){
 	    for (unsigned int i=0; i<len;i++){
 	   
-	      fb_write_cell((writing_state+(i*2)), *(buf+i), FB_GREEN, FB_DARK_GREY);
+	      fb_write_cell((writing_state+(i*2)), *(buf+i), 0, 1);
 	   	 
 	   	 }
 		writing_state+=len*2;
@@ -41,6 +29,3 @@
 		fb_move_cursor(cursor_state);
 	   	 return 0;
     }
-    
-    #endif
-    
