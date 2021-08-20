@@ -1,7 +1,7 @@
 #include "io.h"
 #include "framebuffer.h"
 
-    char *fb = (char *) 0x000B8000;
+     char *fb = (char *) 0x000B8000;
      unsigned int writing_state = 800;
      unsigned int cursor_state=400;
     void fb_write_cell(unsigned int i, char c, unsigned char fg, unsigned char bg)
