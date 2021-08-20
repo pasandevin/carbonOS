@@ -4,6 +4,7 @@
 
 
 #include "drivers/framebuffer.h"
+#include "drivers/serial_port.h"
 #include "keyboard.h"
 //#include "paging.h"
 
@@ -69,6 +70,7 @@ void interrupt_handler(__attribute__((unused)) struct cpu_state cpu, unsigned in
 				str[0] = ascii;
 
 				fb_write(str, 1);
+				serial_write(0x3F8,str,1);
 			}
 
 			pic_acknowledge(interrupt);
