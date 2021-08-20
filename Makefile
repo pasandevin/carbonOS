@@ -1,4 +1,4 @@
-    OBJECTS = loader.o kmain.o drivers/io.o segmentation/gdt.o segmentation/memory_segments.o
+    OBJECTS = loader.o kmain.o drivers/io.o segmentation/gdt.o segmentation/memory_segments.o idt.o interrupt_handlers.o interrupts.o keyboard.o pic.o
     CC = gcc
     CFLAGS = -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector \
              -nostartfiles -nodefaultlibs -Wall -Wextra -Werror -c

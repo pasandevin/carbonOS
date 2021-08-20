@@ -1,10 +1,11 @@
 #include "interrupts.h"
 #include "pic.h"
-#include "io.h"
+#include "drivers/io.h"
 
-#include "serial.h"
+#include "drivers/serial_port.h"
+#include "drivers/frame_buffer.h"
 #include "keyboard.h"
-#include "paging.h"
+//#include "paging.h"
 
 #define INTERRUPTS_DESCRIPTOR_COUNT 256 
 #define INTERRUPTS_KEYBOARD 33 
@@ -63,11 +64,12 @@ void interrupt_handler(__attribute__((unused)) struct cpu_state cpu, unsigned in
 
 			if (scan_code <= KEYBOARD_MAX_ASCII) {
 				ascii = keyboard_scan_code_to_ascii(scan_code);
-				serial_configure_baud_rate(SERIAL_COM1_BASE, 4);
-				serial_configure_line(SERIAL_COM1_BASE);
+				//serial_configure_baud_rate(SERIAL_COM1_BASE, 4);
+				//serial_configure_line(SERIAL_COM1_BASE);
 				char str[1];
 				str[0] = ascii;
-				serial_write(str, 1);
+				serial_write(0x3F8,str, 1);
+				//fb_write(str, 1);
 			}
 
 			pic_acknowledge(interrupt);
@@ -75,7 +77,7 @@ void interrupt_handler(__attribute__((unused)) struct cpu_state cpu, unsigned in
 			break;
 		
 		case INTERRUPTS_PAGING:
-			page_fault();	
+			//page_fault();	
 			break;
 		default:
 			break;

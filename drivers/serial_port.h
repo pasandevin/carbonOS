@@ -68,7 +68,7 @@ void serial_configure_modem(unsigned short com) {
     
     
     int serial_write(unsigned short com, char *buf, unsigned int len) {
-    serial_configure(com , divisor);
+    serial_configure(com , 4);
   unsigned int indexToBuffer = 0;
   while (indexToBuffer < len) {
     if (serial_is_transmit_fifo_empty(com)) {
