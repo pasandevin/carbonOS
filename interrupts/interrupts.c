@@ -1,10 +1,10 @@
 #include "interrupts.h"
 #include "pic.h"
-#include "drivers/io.h"
+#include "../drivers/io.h"
 
 
-#include "drivers/framebuffer.h"
-#include "drivers/serial_port.h"
+#include "../drivers/framebuffer.h"
+#include "../drivers/serial_port.h"
 #include "keyboard.h"
 //#include "paging.h"
 

@@ -1,8 +1,8 @@
     #include "drivers/framebuffer.h"
     #include "drivers/serial_port.h"
     #include "segmentation/memory_segments.h"
-    #include "keyboard.h"
-    #include "interrupts.h"
+    #include "interrupts/keyboard.h"
+    #include "interrupts/interrupts.h"
 
 
     
