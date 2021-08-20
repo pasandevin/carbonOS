@@ -21,7 +21,7 @@
     int fb_write(char *buf, unsigned int len){
 	    for (unsigned int i=0; i<len;i++){
 	   
-	      fb_write_cell((writing_state+(i*2)), *(buf+i), FB_GREEN, FB_DARK_GREY);
+	      fb_write_cell((writing_state+(i*2)), *(buf+i), 0, 1);
 	   	 
 	   	 }
 		writing_state+=len*2;
