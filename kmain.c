@@ -6,7 +6,7 @@
 
 
     
-    int main(){
+    int kmain(){
 
            char ptr2[] = "Welcome to CarbonOS!     ";
    
@@ -16,5 +16,7 @@
 
     segments_install_gdt();
     interrupts_install_idt();
+    
+    return 0;
     
     }
