@@ -3,6 +3,7 @@
 #include "segmentation/memory_segments.h"
 #include "interrupts/keyboard.h"
 #include "interrupts/interrupts.h"
+#include "multiboot.h"
 
 void init_segments_interrupts(){
 	segments_install_gdt();
@@ -10,15 +11,36 @@ void init_segments_interrupts(){
 
 }
 
-int kmain(){
+void kmain(unsigned int ebx){
 	init_segments_interrupts();
-	char ptr2[] = "Welcome to CarbonOS!     ";
+	    multiboot_info_t *mbinfo = (multiboot_info_t *) ebx;
+
+    
+  
 
 
-	serial_write(0x3F8, ptr2, 25);
-	fb_write(ptr2, 25);
+    	if(mbinfo->mods_count == 0){
+    		char msg[]="Error: no module loaded";
+    		fb_write(msg, sizeof(msg));
+    	
+    	}
+    	    	else if(mbinfo->mods_count == 1){
+    		char msg[]="One module successfully loaded";
+    		fb_write(msg, sizeof(msg));
+    		    multiboot_module_t* modules = (multiboot_module_t*) mbinfo->mods_addr;
+        unsigned int address_of_module = modules->mod_start;
+    	    	typedef void (*call_module_t)(void);
+	    	call_module_t start_program = (call_module_t) address_of_module;
+	    	start_program();
+	    	
+    	}
+    	else{
+    	char msg[]="Error: multiplt modules loaded";
+    	fb_write(msg, sizeof(msg));
+    	 }
+    	
 
 
-	return 0;
+	
 
 }

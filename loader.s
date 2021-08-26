@@ -26,8 +26,8 @@
         
         
     ; The assembly code
-
-    call kmain                             ; call the function, the result will be in eax
+    push ebx                              ; multiboot info in ebx 
+    call kmain                             ; call the main function
     
     
     .loop:
