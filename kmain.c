@@ -3,7 +3,7 @@
 #include "segmentation/memory_segments.h"
 #include "interrupts/keyboard.h"
 #include "interrupts/interrupts.h"
-#include "multiboot.h"
+#include "user_mode/multiboot.h"
 
 void init_segments_interrupts(){
 	segments_install_gdt();
@@ -30,8 +30,10 @@ void kmain(unsigned int ebx){
     		    multiboot_module_t* modules = (multiboot_module_t*) mbinfo->mods_addr;
         unsigned int address_of_module = modules->mod_start;
     	    	typedef void (*call_module_t)(void);
+    	    	/* ... */
 	    	call_module_t start_program = (call_module_t) address_of_module;
 	    	start_program();
+	    	/* we'll never get here, unless the module code returns */
 	    	
     	}
     	else{
