@@ -1,6 +1,8 @@
 #include "paging.h"
 #include "drivers/serial_port.h" // pour afficher un msg
 
+
+
 extern void enablePaging(unsigned int*);
 
 // paging mode : 
