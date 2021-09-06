@@ -4,7 +4,7 @@
 #include "interrupts/keyboard.h"
 #include "interrupts/interrupts.h"
 #include "user_mode/start_program.h"
-#include "paging.h"
+#include "paging/paging.h"
 
 
 /*function to intialize interrupts and segments*/
@@ -16,10 +16,10 @@ void init(){
 }
 
 /*kernal main funcion*/
-void kmain(unsigned int ebx){
+void kmain(){
 
 	init();   //initialize interrunpts and segments
-	run_custom_program(ebx);      //run the user program
+	
 
 
 }
