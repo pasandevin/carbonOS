@@ -6,7 +6,7 @@
 #include "../drivers/framebuffer.h"
 #include "../drivers/serial_port.h"
 #include "keyboard.h"
-#include "../paging.h"
+#include "../paging/paging.h"
 
 #define INTERRUPTS_DESCRIPTOR_COUNT 256 
 #define INTERRUPTS_KEYBOARD 33 
