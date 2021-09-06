@@ -11,7 +11,7 @@
 void init(){
 	segments_install_gdt();
 	interrupts_install_idt();
-	enable_paging();
+	init_paging();
 
 }
 
