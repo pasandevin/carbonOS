@@ -16,10 +16,10 @@ void init(){
 }
 
 /*kernal main funcion*/
-void kmain(){
+void kmain(unsigned int ebx){
 
 	init();   //initialize interrunpts and segments
-	//run_custom_program(ebx);      //run the user program
+	run_custom_program(ebx);      //run the user program
 
 
 }
