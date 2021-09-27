@@ -1,25 +1,40 @@
-#include "drivers/framebuffer.h"
-#include "drivers/serial_port.h"
-#include "segmentation/memory_segments.h"
-#include "interrupts/keyboard.h"
-#include "interrupts/interrupts.h"
-#include "user_mode/start_program.h"
-#include "paging/paging.h"
+#include "drivers/serial_port/serial.c"
+#include "memory/segmentation/memory_segments.h"
+#include "drivers/interrupts/interrupts.h"
+#include "multiboot.h"
+#include "utils/type.h"
+#include "memory/paging/paging.h"
+#include "memory/heap/kheap.h"
+#include "user_mode.h"
+#include "drivers/interrupts/hardware_interrupt_enabler.h"
 
+/* Function to initialize */
+void init(u32int kernelPhysicalEnd) {
+  /* Initialize segment descriptor tables */
+  init_gdt();
 
-/*function to intialize interrupts and segments*/
-void init(){
-	segments_install_gdt();
-	interrupts_install_idt();
-	init_paging();
-
+  /* Configure serial port */
+  serial_configure(SERIAL_COM1_BASE, Baud_115200);
+  
+  /* Initialize paging */
+  init_paging(kernelPhysicalEnd);
+  
+  /* Initialize idt */
+  interrupts_install_idt();
+  
 }
 
-/*kernal main funcion*/
-void kmain(){
-
-	init();   //initialize interrunpts and segments
+/* Kernel Main */
+int kmain(u32int kernelPhysicalEnd){
 	
-
-
+    	// Initialize all modules
+  	init(kernelPhysicalEnd);
+  	
+  	disable_hardware_interrupts();
+  	
+  	// Switch to User mode
+   	switch_to_user_mode();
+   	
+	 
+  	return 0;
 }
