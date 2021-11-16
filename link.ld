@@ -1,9 +1,9 @@
 ENTRY(loader)                /* the name of the entry label */
 
-SECTIONS {
-    . = 0x00100000;          /* the code should be relocated to 3GB + 1 MB */
+kernel_start = .;
 
-    KERNEL_PHYSICAL_START = . - 0x00100000;
+SECTIONS {
+    . = 0x00100000;          /* the code should be loaded at 1 MB */
 
     .text ALIGN (0x1000) :   /* align at 4 KB */
     {
@@ -26,5 +26,6 @@ SECTIONS {
         *(.bss)              /* all bss sections from all files */
     }
 
-    KERNEL_PHYSICAL_END = .;
 }
+
+kernel_end = .;
