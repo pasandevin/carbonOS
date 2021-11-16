@@ -2,8 +2,8 @@
 #include "kheap.h"
 
 // kernel_end is defined in the linker script.
-extern u32int kernel_end;
-u32int placement_address = (u32int)&kernel_end;
+extern u32int kernel_virtual_end;
+u32int placement_address = (u32int)&kernel_virtual_end;
 
 u32int kmalloc(u32int size) {
 	u32int mem =  placement_address;
